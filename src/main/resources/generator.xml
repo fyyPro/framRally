@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration  
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"  
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+ 
+<generatorConfiguration>
+ 	<classPathEntry location="D://mysql-connector-java-5.1.46.jar"/>
+ 	<context id="DB2Tables" targetRuntime="MyBatis3">
+ 		<commentGenerator>
+ 			<!-- 抑制警告 -->
+ 			<property name="suppressTypeWarnings" value="true"/>
+ 			<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+ 			<property name="suppressAllComments" value="false"/>
+ 			<!-- 是否生成注释代时间戳-->
+ 			<property name="suppressDate" value="false"/>
+ 		</commentGenerator>
+ 		
+ 		<jdbcConnection driverClass="com.mysql.jdbc.Driver" 
+ 						connectionURL="jdbc:mysql://localhost:3306/sushe" 
+ 						password="1234"
+ 						userId="root"/>
+ 		
+ 		<!--生成Model类存放位置 -->
+ 		<javaModelGenerator targetPackage="com.ssm.domain" 
+ 			targetProject="E:\JVAWEB\shushe\src\main\java">
+ 			<!-- 是否在当前路径下新加一层schema-->
+ 			<property name="enableSubPackages" value="false"/>
+ 			<!-- 是否针对string类型的字段在set的时候进行trim调用 -->
+ 			<property name="trimStrings" value="true"/>
+ 		</javaModelGenerator>
+ 		
+ 		<!--生成映射文件存放位置 -->
+ 		<sqlMapGenerator targetPackage="com.ssm.mapper" 
+ 			targetProject="E:\JVAWEB\shushe\src\main\java">
+ 			<property name="enableSubPackages" value="false"/>
+ 		</sqlMapGenerator>
+ 		
+ 		<!--生成Dao类存放位置 -->
+ 		<javaClientGenerator targetPackage="com.ssm.dao" 
+ 			type="XMLMAPPER" targetProject="E:\JVAWEB\shushe\src\main\java">
+ 			<property name="enableSubPackages" value="false"/>
+ 		</javaClientGenerator>
+ 		
+ 		<!-- 
+ 		tableName:用于自动生成代码的数据库表；
+ 		domainObjectName:对应于数据库表的javaBean类名 
+ 		-->
+ 		<table tableName="t_function" domainObjectName="Function" schema="general"
+ 			enableCountByExample="false" enableDeleteByExample="false" 
+ 			enableUpdateByExample="false" enableSelectByExample="false"
+ 			selectByExampleQueryId="false">
+ 			<!--domain字段的命名规则，false:默认为驼峰命名 true:按数据库真实命名  -->
+ 			<property name="useActualColumnNames" value="false"/>
+ 		</table>
+ 		<table tableName="t_role_function" domainObjectName="RoleFunction" schema="general"
+ 			enableCountByExample="false" enableDeleteByExample="false" 
+ 			enableUpdateByExample="false" enableSelectByExample="false"
+ 			selectByExampleQueryId="false">
+ 			<!--domain字段的命名规则，false:默认为驼峰命名 true:按数据库真实命名  -->
+ 			<property name="useActualColumnNames" value="false"/>
+ 		</table>
+ 		
+ 	</context>
+ 
+</generatorConfiguration>

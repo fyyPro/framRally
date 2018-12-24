@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:lang="http://www.springframework.org/schema/lang"
+	   xmlns:cache="http://www.springframework.org/schema/cache"
+	   xmlns:tx="http://www.springframework.org/schema/tx"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:websocket="http://www.springframework.org/schema/websocket"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+	   					   http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+	   					   http://www.springframework.org/schema/lang
+	   					   http://www.springframework.org/schema/lang/spring-lang-4.3.xsd
+	   					   http://www.springframework.org/schema/tx
+	   					   http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+	   					   http://www.springframework.org/schema/cache
+	   					   http://www.springframework.org/schema/cache/spring-cache-4.3.xsd
+	   					   http://www.springframework.org/schema/aop
+	   					   http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+	   					   http://www.springframework.org/schema/websocket
+	   					   http://www.springframework.org/schema/websocket/spring-websocket-4.3.xsd
+	   					   http://www.springframework.org/schema/context
+	   					   http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<!-- websocket处理类 -->
+	<bean id="myWebSocket" class="com.ssm.websocket.WebSocket" />
+	
+	<!-- 握手拦截器 -->
+	<bean id="myInterceptor" class="com.ssm.interceptor.HandshakeInterceptor" />
+	
+	<websocket:handlers>
+		<websocket:mapping handler="myWebSocket" path="/websocket"/>
+		<websocket:handshake-interceptors>
+			<ref bean="myInterceptor"/>
+		</websocket:handshake-interceptors>
+	</websocket:handlers>
+	
+	<websocket:handlers>
+		<websocket:mapping handler="myWebSocket" path="/sockjs/websocket"/>
+		<websocket:handshake-interceptors>
+			<ref bean="myInterceptor"/>
+		</websocket:handshake-interceptors>
+		<websocket:sockjs/>
+	</websocket:handlers>
+
+</beans>

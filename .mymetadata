@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="framRally"
+  id="myeclipse.1545623879523"
+  context-root="/framRally"
+  j2ee-spec="6.0"
+  archive="framRally.war">
+  <attributes>
+    <attribute name="webrootdir" value="src/main/webapp" />
+  </attributes>
+</project-module>
+

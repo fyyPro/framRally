@@ -79,5 +79,15 @@ public class User implements Serializable{
         this.intime = intime;
     }
     
+    public String toString(){
+    	return "用户名：" + this.name 
+    			+ "密码：" + this.password
+    			+ "电话：" + this.phone
+    			+ "地址：" + this.adrr
+    			+ "应急号码：" + this.yjphone
+    			+ "入库时间：" + this.intime
+    			+ "用户ID：" + this.id;
+    }
+    
     
 }

@@ -19,7 +19,7 @@ public class BaseController {
 			cfg.registerJsonValueProcessor(Date.class, new JsonDateValueProcessor());
 			jsonobj = JSONObject.fromObject(obj,cfg);
 		}
-		log.info("输出结果:"+jsonobj.toString());
+		//log.info("输出结果:"+jsonobj.toString());
 		return jsonobj;
 	}
 	

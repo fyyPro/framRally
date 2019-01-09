@@ -27,4 +27,6 @@ public interface UserDao {
     
     List<Map<String,String>> findUserRoleList();
     
+    User findUser(@Param("name")String name);
+    
 }

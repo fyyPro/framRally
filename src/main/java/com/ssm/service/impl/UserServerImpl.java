@@ -43,5 +43,10 @@ public class UserServerImpl implements UserServer {
 		PageHelper.startPage(pageNo, pageSize);
 		return BeanUtil.toPagedResult(userDao.findUserList());
 	}
+
+	@Override
+	public User getUser(String username) {
+		return userDao.findUser(username);
+	}
 	
 }

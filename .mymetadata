@@ -3,7 +3,7 @@
   type="WEB"
   name="framRally"
   id="myeclipse.1545623879523"
-  context-root="/framRally"
+  context-root="/"
   j2ee-spec="6.0"
   archive="framRally.war">
   <attributes>

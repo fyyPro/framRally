@@ -10,6 +10,8 @@ public interface UserServer {
 
 	public User getUser(String username,String password);
 	
+	public User getUser(String username);
+	
 	public List<Map<String,String>> findUserList();
 	
 	public List<Map<String,String>> findUserRoleList();

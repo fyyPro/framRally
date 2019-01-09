@@ -27,6 +27,13 @@
     where name = #{name,jdbcType=VARCHAR} and password = #{password,jdbcType=VARCHAR}
   </select>
   
+  <select id="findUser" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_user
+    where name = #{name,jdbcType=VARCHAR}
+  </select>
+  
   <select id="findUserList" resultType="java.util.Map">
     SELECT u.*,r.rolename FROM t_user u
 		LEFT JOIN t_user_role ur ON u.id = ur.user_id

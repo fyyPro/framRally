@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+	   					   http://www.springframework.org/schema/beans/spring-beans-4.3.xsd"
+	   default-lazy-init="true">
+	   
+	<!-- 自定义的shiro realm -->
+	<bean id="shiroRealm" class="com.ssm.interceptor.ShiroRealm" />
+	
+	<!-- 定义安全管理器securityManager -->  
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="realm" ref="shiroRealm" />
+		<!-- 适用servlet容器的session,取消对这一行的注释后则使用 shiro的原生 session -->
+		<!-- 
+		<property name="sessionMode" value="native" />
+		-->
+	</bean>
+	
+	<!-- 定义Filter -->
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<property name="securityManager" ref="securityManager" />
+		<!-- 根据具体需求定义以下属性 -->
+		<property name="loginUrl" value="/login" />
+		<property name="successUrl" value="/page/index/index.jsp" />
+		<property name="unauthorizedUrl" value="/404.jsp" />
+		<!-- 定义需要过滤的url -->
+		<property name="filterChainDefinitions">
+			<value>
+				<!-- anon无需验证即可访问，authc需验证后访问 -->
+				/css/** = anon 
+				/upload/** = anon
+				/images/** = anon
+				/img/** = anon
+				/js/** = anon
+				/login = anon
+				/404.jsp = anon
+				/ = anon
+				/file/** = authc,roles[admin]
+				/** = authc,roles[user]
+			</value>
+		</property>
+	</bean>
+	
+	<!-- bean 管理 -->
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
+	
+	<bean id="annotationProxy" class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+			depends-on="lifecycleBeanPostProcessor">
+		<property name="proxyTargetClass" value="true" />
+	</bean>
+	
+	
+</beans>
